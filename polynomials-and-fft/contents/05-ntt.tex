@@ -1,0 +1,97 @@
+\section{Number Theoretic Transform (NTT)}
+
+\begin{frame}
+    \frametitle{실수 오차}
+    \begin{itemize}
+        \item<1-> \(n = \deg f\)\,이 커지면 \(\omega_n = \left(1, \dfrac{2\pi}{n}\right)\), \(\omega_n^k\)\,에 실수 오차가 생김
+        \item<2-> \texttt{float64}, \texttt{float128}\,도 실수 오차로부터 자유롭지 못함
+    \end{itemize}
+
+    \medskip
+
+    \begin{itemize}
+        \item<3-> 결과가 \alert{정수}인 것으로 충분하다면 (예: 소수 \(p\)\,로 나눈 나머지)
+        \item<4-> \(\Z_p\)\,에서만 FFT\,를 수행하면 되지 않나?
+    \end{itemize}
+
+    \medskip
+
+    \begin{itemize}
+        \item<5-> \(\Z_p\)\,에도 \(\omega_n\)\,의 역할을 하는 수가 있는가?
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Root of Unity Modulo \(p\)}
+
+    \(p\)\,가 소수임을 가정합니다.
+
+    \begin{block}{Root of Unity Modulo \(p\)}
+        다음을 만족하는 정수 \(\omega_n\)\,을 \alert{\(n\)-th root of unity modulo \(p\)}\,라 한다.
+        \begin{itemize}
+            \item \(\omega_n^k \not\equiv 1 \pmod{p}\) for \(1 \leq k \leq n - 1\)
+            \item \(\omega_n^n \equiv 1 \pmod{p}\)
+        \end{itemize}
+    \end{block}
+
+    \pause
+
+    예: \(p = 11\), \(n = 10\), \(\omega_{10} = 2\)
+
+    \begin{center}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+            \(k\)             & \(1\) & \(2\) & \(3\) & \(4\) & \(5\)  & \(6\) & \(7\) & \(8\) & \(9\) & \alert{\(10\)} \\
+            \hline
+            \(\omega_{10}^k\) & \(2\) & \(4\) & \(8\) & \(5\) & \(10\) & \(9\) & \(7\) & \(3\) & \(6\) & \alert{\(1\)}  \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Number Theoretic Transform}
+
+    \begin{itemize}
+        \item 복소수에서의 \(\omega_n\)\,과 비교
+              \begin{itemize}
+                  \item \(\omega_n^k \neq 1\) for \(1 \leq k \leq n - 1\)
+                  \item \(\omega_n^n = 1\)
+              \end{itemize} \pause
+        \item \(\mathrm{mod}\;p\)\,만 제외하면 완벽하게 동일 \pause
+        \item \(p\)\,가 소수이므로 역변환을 위한 \(\omega_n\inv\)\,도 존재 \pause
+    \end{itemize}
+
+    FFT\,와 유사하게 진행!
+
+    \begin{block}{\textbf{Number Theoretic Transform}}
+        (\(\Z_p[x]\) 위의) 다항식 \(f = (a_0,\, \dots,\, a_{n-1})\)\,의 \alert{정수 FFT}\,(NTT)를 다음과 같이 정의한다.
+        \[
+            \mathrm{NTT}(f) = \big(f(1),\, f(\omega),\, f(\omega^2),\, \dots,\, f(\omega^{n - 1})\big)
+        \]
+        단, \(\omega\)\,는 \(n\)-th root of unity modulo \(p\)\,이다.
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{예제: 다항식과 쿼리}
+
+    \begin{exampleblock}{\href{https://www.acmicpc.net/problem/14882}{14882번: 다항식과 쿼리}}
+        다항식 \(f(x)\)\,와 점 \(x_i\)\,가 주어질 때 \(f(x_i)\!\!\mod{786,433}\)\,을 계산하세요.
+    \end{exampleblock}
+
+    \pause
+
+    \begin{proof}[풀이]
+        \(p = 786,433\), \(n = 3 \times 2^{18}\), \(\omega_n = 10\)\,으로 설정하고 NTT\,진행. \pause
+
+        \medskip
+
+        \(1 \leq k \leq n - 1\)\,에 대해 \(\omega_n^k\)\,는 \(1\)\,부터 \(786,432\)\,의 값을 한 번씩 가지므로 NTT\, 한 번으로 \(f(x_i)\!\!\mod{786,433}\)\,을 다 구할 수 있다.
+    \end{proof}
+
+    \pause
+    \begin{itemize}
+        \item \(n = 3 \times 2^{18}\)\,이기 때문에 기존의 \(2\)-분할이 아닌 \(3\)-분할을 한 번 해야 함
+    \end{itemize}
+\end{frame}

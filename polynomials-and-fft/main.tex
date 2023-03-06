@@ -1,0 +1,93 @@
+\documentclass[aspectratio=43]{beamer}
+\usepackage{kotex}
+\usepackage{hyperref}
+\hypersetup{unicode=true}
+
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{import}
+\usepackage{listings}
+
+\usetheme{Madrid}
+
+\setlength{\itemsep}{5em}
+
+\renewcommand{\baselinestretch}{1.3}
+
+\usefonttheme[onlymath]{serif}
+
+\AtBeginSection{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\bb}[1]{\mathbb{#1}}
+\renewcommand{\rm}[1]{\mathrm{#1}}
+\newcommand{\rmbf}[1]{\mathrm{\mathbf{#1}}}
+\newcommand{\inv}{^{-1}}
+\renewcommand{\span}[1]{\left\langle #1 \right\rangle}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\DFT}{\mathrm{DFT}}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+
+\lstdefinestyle{mystyle}{
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\tiny,
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbers=left,
+    numbersep=-3pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    tabsize=2
+}
+\lstset{style=mystyle}
+
+
+
+\title[Polynomials and the FFT]{\textbf{Polynomials and the Fast Fourier Transform}}
+\subtitle{\textbf{다항식과 고속 푸리에 변환}}
+\author{Sungchan Yi}
+\institute[Backend Engineer]{Scatterlab}
+\date[Scatterlab]{August, 2022}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+  \frametitle{목차}
+  \tableofcontents
+\end{frame}
+
+\input{contents/01-prerequisites.tex}
+\input{contents/02-polynomial-operations.tex}
+\input{contents/03-dft.tex}
+\input{contents/04-fft.tex}
+\input{contents/05-ntt.tex}
+\input{contents/06-other-applications.tex}
+\input{contents/07-further-reading.tex}
+
+\frame{\titlepage}
+
+\end{document}

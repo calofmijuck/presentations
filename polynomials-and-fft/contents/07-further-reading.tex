@@ -1,0 +1,13 @@
+\begin{frame}
+    \frametitle{참고}
+    \begin{itemize}
+        \item DFT\,에서 \(\omega\inv\), Inverse DFT\,에서 \(\omega\)\,를 사용하기도 합니다.
+        \item DFT Matrix\,를 unitary 행렬로 만들기 위해 \(1/\sqrt{n}\)\,으로 나누어서 사용하기도 합니다.
+        \[
+            W = \left(\frac{\omega^{ij}}{\sqrt{n}}\right)_{n \times n} \qquad W\inv = \left(\frac{\omega^{-ij}}{\sqrt{n}}\right)_{n \times n}
+        \]
+        단, NTT\,와 같이 다루는 집합에 따라 \(1/\sqrt{n}\)\,이 무의미한 경우도 있습니다.
+        \item NTT\,의 일반적인 형태는 \href{https://en.wikipedia.org/wiki/Discrete_Fourier_transform_over_a_ring}{DFT Over a Ring}\,입니다.
+        \item \(\omega\)\,가 아니라 임의의 복소수 \(z\)\,의 거듭제곱에서의 함숫값이 필요하다면 \href{https://en.wikipedia.org/wiki/Chirp_Z-transform}{Chirp \(Z\)-Transform}\,을 사용합니다.
+    \end{itemize}
+\end{frame}

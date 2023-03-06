@@ -1,0 +1,63 @@
+\section{다항식의 연산}
+
+\subsection{덧셈 in \texorpdfstring{\(\O(n)\)}{O(n)}}
+
+\begin{frame}[fragile]
+    \frametitle{다항식의 덧셈}
+    \begin{itemize}
+        \setlength{\itemsep}{1em}
+        \item Very easy!
+        \item<2-> \(f = (a_0, \dots, a_{n-1})\), \(g = (b_0, \dots, b_{n-1})\)
+              \smallskip
+              \begin{center}
+                  \(f + g = (a_0 + b_0, \dots, a_{n-1} + b_{n-1})\)
+              \end{center}
+        \item<2-> 당연히 \(\O(n)\)!
+        \item<3->
+              \begin{center}
+                  \begin{lstlisting}[language=Python]
+  def add(f: List[int], g: List[int]) -> List[int]:
+      return [f[i] + g[i] for i in range(len(f))]
+\end{lstlisting}
+              \end{center}
+    \end{itemize}
+\end{frame}
+
+\subsection{곱셈 in \texorpdfstring{\(\O(n^2)\)}{O(n2)}}
+
+\begin{frame}
+    \frametitle{다항식의 곱셈}
+    \begin{itemize}
+        \setlength{\itemsep}{1em}
+        \item<2-> \(\ds f = \sum_{i = 0}^{n - 1} a_i x^i\), \(\ds g = \sum_{i = 0}^{n - 1} b_i x^i\),
+              \smallskip
+              \begin{center}
+                  \(\ds fg = \sum_{i = 0}^{2n - 1} \sum_{j = 0}^{i} a_{j} b_{i - j} x^i\)
+              \end{center}
+              \begin{itemize}
+                  \item<3-> \(i\)\,는 \alert{차수}를 나타냄
+                        \medskip
+                  \item<4-> \(x^i\)\,의 계수: \(0 \leq j \leq i\)\,에 대하여 \(a_j\)\,와 \(b_{i-j}\)\,를 곱해 더한 것
+                        \medskip
+                  \item<4-> \(a_j x^j \cdot b_{i - j} x^{i - j} = \alert{a_j b_{i-j}} x^{i}\)
+              \end{itemize}
+        \item<5-> \(\sum\)\,가 두 개 들어간 것을 보니 \(\O(n^2)\)\,...
+        \item<6-> \textit{어디서 많이 본 것 같은데...}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{다항식의 곱셈}
+    \begin{center}
+        \begin{lstlisting}[language=Python]
+    def multiply(f: List[int], g: List[int]) -> List[int]:
+        product = [0] * (len(f) + len(g))
+
+        for i in range(len(product)):
+            for j in range(i + 1):
+                product[i] += f[i] * g[j - i]
+
+        return product
+\end{lstlisting}
+    \end{center}
+\end{frame}
