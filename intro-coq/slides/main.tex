@@ -1,0 +1,74 @@
+\documentclass[aspectratio=169,handout]{beamer}
+\usepackage{kotex}
+\usepackage{hyperref}
+\hypersetup{unicode=true}
+
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{import}
+\usepackage{listings}
+
+\usetheme{Madrid}
+\usecolortheme{dolphin}
+
+\setlength{\itemsep}{5em}
+
+\renewcommand{\baselinestretch}{1.5}
+
+\usefonttheme[onlymath]{serif}
+
+\AtBeginSection{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \linespread{1.3}
+    \tableofcontents[currentsection,hideothersubsections]
+  \end{frame}
+}
+
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\bb}[1]{\mathbb{#1}}
+\renewcommand{\rm}[1]{\mathrm{#1}}
+\newcommand{\rmbf}[1]{\mathrm{\mathbf{#1}}}
+\newcommand{\inv}{^{-1}}
+\renewcommand{\span}[1]{\left\langle #1 \right\rangle}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\ds}{\displaystyle}
+
+\title[Coq: Proof Assistant]{\textbf{Coq: Proof Assistant}}
+\author[Department of CSE, Seoul National University]{Sungchan Yi}
+\institute[]{May 12th, 2023}
+\date{STEM SNU}
+
+\graphicspath{{images/}}
+\logo{
+    \includegraphics[width=1cm]{snu.png}
+}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+  \frametitle{Table of Contents}
+  \tableofcontents[hideallsubsections]
+\end{frame}
+
+\input{content.tex}
+
+\frame{\titlepage}
+
+% \begin{frame}
+%   \frametitle{References}
+%   \bibliographystyle{unsrt}
+%   \linespread{1.1}
+%   {\tiny \bibliography{reference.bib}}
+% \end{frame}
+
+\end{document}
