@@ -33,7 +33,7 @@ Notation "x && y" := (and x y).
 Notation "x || y" := (or x y).
 
 Example bool_operation:
-  or (and true false) false = false.
+  (true && false) || false = false.
 Proof.
   auto.
 Qed.
