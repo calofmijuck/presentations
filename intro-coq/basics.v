@@ -131,7 +131,7 @@ Theorem square_sum_correct: forall n : nat,
   6 * square_sum n = n * (n + 1) * (2 * n + 1).
 Proof.
   induction n.
-  - reflexivity.
+  - trivial.
   (* magic *)
   - simpl square_sum. nia.
 Qed.
@@ -179,4 +179,17 @@ Proof.
   destruct NONE.
   apply H.
   apply ALL.
+Qed.
+
+Theorem disjunction_implies_all:
+  forall (P Q R : nat -> Prop),
+  (exists x, P x \/ Q x) /\
+  (forall x, P x -> R x) /\
+  (forall x, Q x -> R x)
+  -> exists x, R x.
+Proof.
+  intros P Q R H.
+  destruct H as [PorQ [PR QR]].
+  destruct PorQ.
+  destruct H as [HP | HQ]; eauto.
 Qed.
